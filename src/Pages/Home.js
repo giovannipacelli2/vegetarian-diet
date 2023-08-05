@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react'
 
+import './css/Home.css';
+
 // Use Redux
 import { useSelector, useDispatch } from 'react-redux';
 import { setTopRated } from '../actions/appReducer';
