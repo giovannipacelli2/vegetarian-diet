@@ -1,0 +1,28 @@
+.navbar {
+    --paddingNavbar: 4em;
+
+    width: 100%;
+    height: 6em;
+
+    padding: 0 var(--paddingNavbar);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: var(--primary-green-3);
+}
+
+.logo {
+    font-size: 2em;
+    color: var(--clr-white);
+}
+
+.menu {
+    --menuWidth: 5em;
+
+    color: var(--clr-white);
+
+    font-size: var(--menuWidth);
+    /* height: calc( var(--menuWidth) / 1.136 ); */
+}

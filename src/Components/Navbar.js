@@ -1,8 +1,23 @@
 import React from 'react'
+import { AiOutlineMenu } from 'react-icons/ai';
 
-const Navbar = () => {
+import './css/Navbar.css';
+
+import Search from './Search'
+
+const Navbar = ({setSidebar}) => {
+
   return (
-    <div>Navbar</div>
+    <header className='navbar'>
+      <h2 className='logo'>VegetarianWorld</h2>
+      <Search />
+      <button 
+        className='icon-btn'
+        onClick={setSidebar}
+      >
+        <AiOutlineMenu className='menu'/>
+      </button>
+    </header>
   )
 }
 

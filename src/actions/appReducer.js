@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit"
 const initialState = {
     data: [],
     topRated: [],
+    searchedData: [],
     isOpenSidebar: false,
     searched: '',
     filter: {
@@ -21,17 +22,17 @@ export const appReducer = createSlice({
         setData: (state,action)=>{
             state.data = action.payload;
         },
-        openSidebar: (state)=> {
-            state.isOpenSidebar = true;
-        },
-        closeSidebar: (state)=> {
-            state.isOpenSidebar = false;
+        setSidebar: (state)=> {
+            state.isOpenSidebar = !state.isOpenSidebar;
         },
         setFilter: (state, action)=>{
             state.filter[action.payload] = !state.filter[action.payload];
         },
         setSearched: (state, action)=>{
             state.searched = String(action.payload);
+        },
+        setSearchedData: (state, action)=>{
+            state.searchedData = action.payload;
         },
         setDevice: (state, action)=>{
             state.desktop = action.payload;
@@ -43,4 +44,4 @@ export const appReducer = createSlice({
 });
 
 export default appReducer.reducer;
-export const { setData, openSidebar,closeSidebar, setFilter, setSearched, setDevice, setTopRated } = appReducer.actions
+export const { setData, setSidebar, setFilter, setSearched, setSearchedData, setDevice, setTopRated } = appReducer.actions

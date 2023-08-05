@@ -1,0 +1,80 @@
+.search {
+    --radius: 2em;
+    --input-padding: 1.5em;
+    --input-width: 20em;
+
+    width: auto;
+    height: auto;
+
+    position: relative;
+}
+
+.search>input {
+    font-size: 1em;
+    
+    width: var(--input-width);
+    height: auto;
+    
+    padding: 1em var(--input-padding);
+    
+    border-radius: var(--radius);
+    border: 1px solid var(--gray);
+    
+    box-shadow: var(--dark-shadow);
+}
+
+.search>input:focus {
+    outline-style: solid;
+    outline-color: var(--clr-black);
+}
+
+.icon-search {
+    position: absolute;
+    height: fit-content;
+
+    top: 50%;
+    bottom: 50%;
+    right: var(--input-padding);
+
+    transform: translateY(-50%);
+
+    cursor: pointer;
+}
+
+.icon {
+    font-size: 120%;
+}
+
+/*----------------Drop-menu----------------*/
+
+.dropmenu {
+    position: absolute;
+    width: var(--input-width);
+}
+
+.droplist {
+    margin: 0 auto;
+    width: calc( var(--input-width) - 10% );
+
+    list-style-type: none;
+    border: 1px solid var(--primary-green-4);
+
+    background-color: var(--clr-white);
+    padding: 0.8em 0;
+    border-radius: 10px;
+}
+
+.droplist>* {
+    padding: 0.5em 1em;
+}
+
+.droplist>li {
+    cursor: pointer;
+}
+.droplist>li:hover {
+    background-color: var(--primary-green-2);
+}
+
+.droplist>.link {
+
+}

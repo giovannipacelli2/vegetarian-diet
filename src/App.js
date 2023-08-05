@@ -13,7 +13,7 @@ import Navbar from './Components/Navbar';
 
 // Use Redux
 import { useSelector, useDispatch } from 'react-redux';
-import { setData, setDevice } from './actions/appReducer';
+import { setData, setDevice, setSidebar } from './actions/appReducer';
 
 import { useQuery } from '@tanstack/react-query';
 
@@ -41,6 +41,10 @@ function App() {
       queryFn: fetchRepositories
   });
 
+  const manageSidebar = ()=> {
+    dispatch(setSidebar());
+  }
+
   /*-------------Copiamo-i-dati-ricevuti-nello-store-------------*/
  
   useEffect(()=>{
@@ -63,12 +67,12 @@ function App() {
 
   return (
     <Router>
-      <Navbar />
+      <Navbar setSidebar={manageSidebar} />
       <Routes>
         <Route exact path='/' element={
           <Home />
         }/>
-        <Route path='/SingleRecipe' element={
+        <Route path='/SingleRecipe/:id' element={
           <SingleRecipe />
         }/>
       </Routes>

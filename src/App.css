@@ -1,5 +1,14 @@
 /* Variabili globali */
 
 :root {
-    
+    --primary-green-2: #83eab1;
+    --primary-green-3: #1CB361;
+    --primary-green-4: #0b572d;
+    --gray: #757575;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
 }

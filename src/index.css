@@ -111,3 +111,10 @@ code {
 .btn-dark:hover {
   background-color: var(--clr-red-dark-hover);
 }
+
+.icon-btn {
+  background-color: transparent;
+  border: none;
+
+  cursor: pointer;
+}
