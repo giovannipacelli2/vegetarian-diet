@@ -18,13 +18,15 @@ const Search = () => {
 
     const dropmenuOpen = ()=> {
         setIsDropmenuOpen(true);
+        document.addEventListener('click', dropmenuClose);
     };
 
     const dropmenuClose = (e)=> {
 
-        if ( e.target.closest('.search') ) return;
-        console.log(e.target)
+        if ( e.target.closest('.droplist') || e.target.id === 'textSearch' ) return;
+
         setIsDropmenuOpen(false);
+        document.removeEventListener('click', dropmenuClose);
     };
 
     useEffect( ()=>{
@@ -36,7 +38,6 @@ const Search = () => {
         }
 
         inputDomElem.current.addEventListener('focus', dropmenuOpen);
-        document.addEventListener('click', dropmenuClose);
 
         return ()=>{
             inputDomElem.current.removeEventListener('focus', dropmenuOpen);
@@ -62,6 +63,7 @@ const Search = () => {
 
     const handleSubmit = (e)=>{
         e.preventDefault();
+        console.log('submit');
     };
 
   return (
@@ -92,7 +94,11 @@ const Search = () => {
                     {
                         searchedData.map((item, index)=>{
                             return <li key={index}>
-                                <Link className='link' to={`/SingleRecipe/${item.id}`}>
+                                <Link 
+                                    className='link'
+                                    to={`/SingleRecipe/${item.id}`}
+                                    onClick={()=>{setIsDropmenuOpen(false)}}
+                                >
                                     {item.title}
                                 </Link>
                             </li>
