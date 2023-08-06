@@ -74,8 +74,3 @@
 .droplist>li:hover {
     background-color: var(--primary-green-2);
 }
-
-.none-link {
-    color: var(--clr-black);
-    text-decoration: none;
-}

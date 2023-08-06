@@ -1,0 +1,25 @@
+.img-link {
+    position: relative;
+    width: 20em;
+}
+
+.img-link>img {
+    width: 100%;
+    height: max-content;
+}
+
+.img-link .img-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    font-size: 1.2em;
+
+    opacity: 0;
+}
+
+.img-link:hover>.img-btn,
+.img-link:focus.img-btn {
+    opacity: 1;
+}

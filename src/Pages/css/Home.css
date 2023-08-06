@@ -1,0 +1,33 @@
+.home-img {
+    height: 35em;
+    width: 100%;
+    
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.header-100>.title {
+    margin-bottom: 1em;
+}
+.header-100>.line {
+    height: 0.25em;
+    width: 60%;
+    
+    border-radius: 3em;
+
+    background-color: var(--simple-red);
+}
+
+.img-container {
+    margin: 0 auto;
+    width: 70%;
+
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.img-container>* {
+    margin-bottom: 1em;
+}

@@ -67,51 +67,6 @@ code {
   --transition: all 0.15s linear;
 }
 
-
-.btn {
-  background-color: var(--clr-grey-8);
-  color: var(--clr-black);
-  border: none;
-  
-  font-size: 1.2em;
-  text-transform: capitalize;
-  
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
-  border-radius: 0.7em;
-  
-  transition: var(--transition);
-}
-
-.btn:hover {
-  background-color: var(--clr-grey-9);
-  cursor: pointer;
-}
-
-.btn-primary {
-  background-color: var(--clr-primary-4);
-  color: white;
-}
-.btn-primary:hover {
-  background-color: var(--clr-primary-3);
-  color: white;
-}
-
-.btn-success {
-  color: white;
-  background-color: var(--clr-green-dark);
-}
-.btn-success:hover {
-  background-color: var(--clr-green-dark-hover);
-}
-.btn-dark {
-  color: white;
-  background-color: var(--clr-red-dark);
-}
-.btn-dark:hover {
-  background-color: var(--clr-red-dark-hover);
-}
-
 .icon-btn {
   background-color: transparent;
   border: none;

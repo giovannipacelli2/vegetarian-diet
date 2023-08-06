@@ -14,7 +14,7 @@ import Navbar from './Components/Navbar';
 
 // Use Redux
 import { useSelector, useDispatch } from 'react-redux';
-import { setData, setDevice, setSidebar } from './actions/appReducer';
+import { setData, setTopRated, setDevice, setSidebar } from './actions/appReducer';
 
 import { useQuery } from '@tanstack/react-query';
 
@@ -26,6 +26,7 @@ const URL = 'http://localhost:4000/results';
 
 function App() {
 
+  const stateData = useSelector( (state)=>state.appReducer.data );
   const dispatch = useDispatch();
 
   /*--------------Preleviamo-i-dati-con-React-query--------------*/
@@ -47,13 +48,38 @@ function App() {
   }
 
   /*-------------Copiamo-i-dati-ricevuti-nello-store-------------*/
- 
+  
   useEffect(()=>{
     if (query.isFetched) {
       dispatch(setData(query.data?.data));
     }
   }, [query.isFetched]);
+  
+  /*----------------Set-delle-ricette-consigliate----------------*/
+  
+  useEffect(() => {
+    if (stateData) {
 
+      let maxLength = stateData.length;
+
+      let rdmSet = new Set();
+
+      if (maxLength) {
+        while (rdmSet.size < 6) {
+          rdmSet.add(Math.round(Math.random() * maxLength));
+        }
+      }
+
+      let tmpRated = [];
+
+      for (let value of rdmSet) {
+        tmpRated.push(stateData[value]);
+      }
+
+      dispatch(setTopRated(tmpRated));
+    }
+  }, [stateData]);
+  
   /*---------------------Gestione-LOADING------------------------*/
 
   if (query.isLoading) return(
