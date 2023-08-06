@@ -7,14 +7,17 @@ import { AiOutlineSearch } from 'react-icons/ai';
 
 // Import dei dati dallo store
 import { useSelector, useDispatch } from 'react-redux';
-import { setData, setDevice, setSidebar, setSearched, setSearchedData } from '../actions/appReducer';
+import { setSearched, setSearchedData } from '../actions/appReducer';
 
 const Search = () => {
 
     const inputDomElem = useRef(null);
-
+    // Gestisce apertura e chiusura della droplist
     const [ isDropmenuOpen, setIsDropmenuOpen ] = useState(false);
+    // Controlla le coordinate dell'input per la droplist
     const [ inputCoords, setInputCoords ] = useState({});
+
+    /*--------------Funzioni-attivate-dagli-EVENT-LISTENER--------------*/
 
     const dropmenuOpen = ()=> {
         setIsDropmenuOpen(true);
@@ -29,11 +32,13 @@ const Search = () => {
         document.removeEventListener('click', dropmenuClose);
     };
 
+    /*--------------Refresh-input-COORDS-&-Gestione-LISTENER------------*/
+
     useEffect( ()=>{
         if(inputDomElem) {
             setInputCoords({
-                inputX : inputDomElem.current.clientLeft,
-                inputY : inputDomElem.current.clientBottom
+                top : inputDomElem.current.clientBottom + "px",
+                left : inputDomElem.current.clientLeft + "px"
             })
         }
 
@@ -45,12 +50,15 @@ const Search = () => {
         }
     }, [inputDomElem] );
     
+    /*--------------------Preleva-dati-dallo-STATE----------------------*/
 
     const data = useSelector( (state)=> state.appReducer.data );
     const searched = useSelector( (state)=> state.appReducer.searched );
     const searchedData = useSelector( (state)=> state.appReducer.searchedData );
 
     const dispatch = useDispatch();
+
+    /*-----------------------LISTENERs-sul-FORM-------------------------*/
 
     const handleChange = (value)=>{
         let text = value.toLowerCase();
@@ -63,7 +71,6 @@ const Search = () => {
 
     const handleSubmit = (e)=>{
         e.preventDefault();
-        console.log('submit');
     };
 
   return (
@@ -83,19 +90,14 @@ const Search = () => {
             (searched && isDropmenuOpen && searchedData.length !== 0) &&
             <div 
                 className='dropmenu'
-                style={
-                    {
-                        top:inputCoords.inputY + 'px',
-                        left:inputCoords.inputX + 'px'
-                    }
-                }
+                style={ inputCoords }
             >
                 <ul className='droplist'>
                     {
                         searchedData.map((item, index)=>{
                             return <li key={index}>
                                 <Link 
-                                    className='link'
+                                    className='none-link'
                                     to={`/SingleRecipe/${item.id}`}
                                     onClick={()=>{setIsDropmenuOpen(false)}}
                                 >
@@ -112,7 +114,7 @@ const Search = () => {
             type='submit'
             className='icon-btn icon-search'
         >
-            <AiOutlineSearch className='icon' />
+            <Link to='/result' ><AiOutlineSearch className='icon' /></Link>
         </button>
     </form>
         

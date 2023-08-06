@@ -75,7 +75,7 @@
     background-color: var(--primary-green-2);
 }
 
-.droplist .link {
+.none-link {
     color: var(--clr-black);
     text-decoration: none;
 }

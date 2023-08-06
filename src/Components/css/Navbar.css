@@ -1,3 +1,6 @@
+/* Logo font */
+@import url('https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap');
+
 .navbar {
     --paddingNavbar: 4em;
 
@@ -16,6 +19,8 @@
 .logo {
     font-size: 2em;
     color: var(--clr-white);
+
+    font-family: 'Gloria Hallelujah', cursive;
 }
 
 .menu {

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import { AiOutlineMenu } from 'react-icons/ai';
 
 import './css/Navbar.css';
@@ -9,7 +10,9 @@ const Navbar = ({setSidebar}) => {
 
   return (
     <header className='navbar'>
-      <h2 className='logo'>VegetarianWorld</h2>
+      <Link to='/' className='none-link'>
+        <h2 className='logo'>VegetarianWorld</h2>
+      </Link>
       <Search />
       <button 
         className='icon-btn'

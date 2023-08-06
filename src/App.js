@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 // Pages
 import Home from './Pages/Home';
 import SingleRecipe from './Pages/SingleRecipe';
+import ResultPage from './Pages/ResultPage';
 
 // Components
 import Navbar from './Components/Navbar';
@@ -74,6 +75,9 @@ function App() {
         }/>
         <Route path='/SingleRecipe/:id' element={
           <SingleRecipe />
+        }/>
+        <Route path='/result' element={
+          <ResultPage />
         }/>
       </Routes>
     </Router>
