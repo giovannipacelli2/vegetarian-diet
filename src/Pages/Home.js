@@ -8,13 +8,10 @@ import { useSelector, useDispatch } from 'react-redux';
 
 // Componenti
 import HeaderSection from '../Components/HeaderSection';
+import Hero from '../Components/Hero';
 import ImgLink from '../Components/ImgLink';
 
 const Home = () => {
-
-  const imgStyle = {    // Imposta l'immagine nella home
-    backgroundImage: `url(${homeImg})`
-  };
 
   // Preleviamo dallo store
   const topRated = useSelector( (state)=>state.appReducer.topRated );
@@ -26,7 +23,7 @@ const Home = () => {
   return (
     <section className='home'>
 
-      <div style={imgStyle} className='home-img'></div>
+      <Hero cssClass={'hero home-img'} img={homeImg} />
 
       <HeaderSection classlist={'header-section header-100'} />
 

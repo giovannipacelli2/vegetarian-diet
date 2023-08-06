@@ -43,6 +43,17 @@ body {
     text-decoration: none;
 }
 
+/*----------Hero-----------*/
+
+.hero {
+    height: auto;
+    width: auto;
+    
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 /*---------BUTTONS---------*/
 
 .btn {
