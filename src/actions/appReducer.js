@@ -4,7 +4,7 @@ const initialState = {
     data: [],
     topRated: [],
     searchedData: [],
-    isOpenSidebar: true,
+    isOpenSidebar: false,
     searched: '',
     filter: {
         lowCarb: false,
