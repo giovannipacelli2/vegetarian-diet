@@ -11,10 +11,11 @@ import ResultPage from './Pages/ResultPage';
 
 // Components
 import Navbar from './Components/Navbar';
+import Sidebar from './Components/Sidebar';
 
 // Use Redux
 import { useSelector, useDispatch } from 'react-redux';
-import { setData, setTopRated, setDevice, setSidebar } from './actions/appReducer';
+import { setData, setTopRated, setDevice, setSidebar, setFilter } from './actions/appReducer';
 
 import { useQuery } from '@tanstack/react-query';
 
@@ -27,6 +28,8 @@ const URL = 'http://localhost:4000/results';
 function App() {
 
   const stateData = useSelector( (state)=>state.appReducer.data );
+  const filter = useSelector( (state)=>state.appReducer.filter );
+  const isOpenSidebar = useSelector( (state)=>state.appReducer.isOpenSidebar );
   const dispatch = useDispatch();
 
   /*--------------Preleviamo-i-dati-con-React-query--------------*/
@@ -80,6 +83,15 @@ function App() {
     }
   }, [stateData]);
   
+  /*---------------------Gestione-SIDEBAR------------------------*/
+
+  const sidebarProps = {
+    filter,
+    setFilter: (filterName)=>{ dispatch(setFilter(filterName)) },
+    isOpenSidebar,
+    setSidebar: ()=>{ dispatch(setSidebar) }
+  };
+
   /*---------------------Gestione-LOADING------------------------*/
 
   if (query.isLoading) return(
@@ -95,6 +107,7 @@ function App() {
   return (
     <Router>
       <Navbar setSidebar={manageSidebar} />
+      <Sidebar {...sidebarProps} />
       <Routes>
         <Route exact path='/' element={
           <Home />

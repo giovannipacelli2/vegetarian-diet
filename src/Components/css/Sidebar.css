@@ -1,0 +1,31 @@
+.sidebar {
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    right: 0;
+
+    width: 40vw;
+    max-width: 25em;
+    height: 100%;
+
+    border: var(--default-border);
+    background-color: var(--clr-white);
+}
+
+.sidebar-header {
+    --radius-bottom-left: 6em;
+
+    position: relative;
+    height: 9em;
+    width: 100%;
+
+    background-color: #FFB73C;
+
+    border-bottom-left-radius: var(--radius-bottom-left);
+}
+
+.sidebar-header>h2 {
+    position: absolute;
+    left: calc( var(--radius-bottom-left) / 1.6 );
+    bottom: 2vw;
+}

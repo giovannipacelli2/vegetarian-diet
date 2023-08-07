@@ -38,6 +38,10 @@ body {
     align-items: center;
 }
 
+.display-none {
+  display: none;
+}
+
 .none-link {
     color: var(--clr-black);
     text-decoration: none;
