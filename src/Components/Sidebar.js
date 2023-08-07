@@ -39,23 +39,28 @@ const Sidebar = ({ filter, setFilter, setSidebar, isOpenSidebar }) => {
 
   return (
     <section 
-      className={ `sidebar ${isOpenSidebar ? '' : 'display-none'}` } 
+      className={ `${isOpenSidebar ? 'sidebar ' : 'sidebar to-right'}` } 
     >
-
-      <button 
-        type='button'
-        className='btn'
-        onClick={setSidebar}
-      >
-        <AiOutlineClose className='none-link' />
-      </button>
-
       <header className="sidebar-header">
+
+        <button
+          type='button'
+          className='btn-close'
+          onClick={setSidebar}
+        >
+          <AiOutlineClose className='icon none-link' />
+        </button>
+
         <h2>Filter</h2>
       </header>
 
       <section className="filter-container">
-        {filterSection()}
+
+        <div className="line"></div>
+
+        <div className="all-filters">
+          {filterSection()}
+        </div>
       </section>
 
     </section>

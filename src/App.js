@@ -89,7 +89,7 @@ function App() {
     filter,
     setFilter: (filterName)=>{ dispatch(setFilter(filterName)) },
     isOpenSidebar,
-    setSidebar: ()=>{ dispatch(setSidebar) }
+    setSidebar: ()=>{ dispatch(setSidebar()) }
   };
 
   /*---------------------Gestione-LOADING------------------------*/
