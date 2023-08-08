@@ -5,6 +5,12 @@ import { AiOutlineClose } from 'react-icons/ai';
 
 const Sidebar = ({ filter, setFilter, setSidebar, isOpenSidebar }) => {
 
+  const handleChange = (e) => {
+    let name = e.target.name;
+
+    setFilter(name)
+  }
+
   const filterSection = ()=> {
 
     let tmpArr = [];
@@ -13,7 +19,7 @@ const Sidebar = ({ filter, setFilter, setSidebar, isOpenSidebar }) => {
     for ( let item in filter ) {
 
       const name = item;
-      const value = filter[item];
+      const value = filter[item].value;
       
       const JSX = <div key={index} className="filter">
         <label htmlFor={name}>{name}</label>
@@ -22,7 +28,7 @@ const Sidebar = ({ filter, setFilter, setSidebar, isOpenSidebar }) => {
           type="checkbox"
           name={name} 
           id={name} 
-          onChange={ (e)=>{setFilter(e.target.name)} }
+          onChange={ handleChange }
           value={value}
         />
       </div>

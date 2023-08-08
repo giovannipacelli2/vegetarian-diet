@@ -7,10 +7,26 @@ const initialState = {
     isOpenSidebar: false,
     searched: '',
     filter: {
-        lowCarb: false,
-        lowFat: false,
-        lactoseFree: false,
-        glutenFree: false
+        lowCarb: {
+            query: 'maxCarbs',
+            queryValue: 30,
+            value:false
+        },
+        lowFat: {
+            query: 'maxFat',
+            queryValue: 10,
+            value:false
+        },
+        dairyFree: {
+            query: 'intolerances',
+            queryValue: 'Dairy',
+            value:false
+        },
+        glutenFree: {
+            query: 'intolerances',
+            queryValue: 'Gluten',
+            value:false
+        },
     },
     desktop: false
 }
@@ -26,7 +42,7 @@ export const appReducer = createSlice({
             state.isOpenSidebar = !state.isOpenSidebar;
         },
         setFilter: (state, action)=>{
-            state.filter[action.payload] = !state.filter[action.payload];
+            state.filter[action.payload].value = !state.filter[action.payload].value;
         },
         setSearched: (state, action)=>{
             state.searched = String(action.payload);

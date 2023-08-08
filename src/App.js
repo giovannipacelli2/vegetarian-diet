@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 
 //Use react-router-dom
@@ -23,6 +23,7 @@ import { useQuery } from '@tanstack/react-query';
 import { fetchData } from './api/apiFunctions';
 
 const URL = 'http://localhost:4000/results';
+/* const URL = 'https://api.spoonacular.com/recipes/complexSearch'; */
 
 
 function App() {
@@ -32,18 +33,47 @@ function App() {
   const isOpenSidebar = useSelector( (state)=>state.appReducer.isOpenSidebar );
   const dispatch = useDispatch();
 
+  // Local State
+
+  const [ params, setParams ] = useState({});
+
+  useEffect(()=>{
+
+    let tmp = {diet: 'Vegetarian'};
+
+    for ( let item in filter ) {
+
+      if (filter[item].value) {
+
+        let query = filter[item].query;
+        let queryValue = filter[item].queryValue;
+
+        if ( tmp[query] ) {
+          tmp[query] += `, ${queryValue}`;
+        } else {
+          tmp = {
+            ...tmp,
+            [query]: queryValue
+          }
+        }
+
+
+      }
+    }
+
+    setParams( tmp );
+
+  }, [filter]);
+
   /*--------------Preleviamo-i-dati-con-React-query--------------*/
 
-  const fetchRepositories = () => {
-    /* const params = {
-        diet:'Vegetarian',
-    } */
-    return fetchData(URL);
+  const fetchRepositories = (params) => {
+    return fetchData(URL, params);
 }
 
-  const query = useQuery({
+  const query =  useQuery({
       queryKey: ['fetch-repo'],
-      queryFn: fetchRepositories
+      queryFn: ()=>{return fetchRepositories(params)}
   });
 
   const manageSidebar = ()=> {
@@ -57,6 +87,12 @@ function App() {
       dispatch(setData(query.data?.data));
     }
   }, [query.isFetched]);
+
+  /*-----------------Rifetch-dati-cambio-parametri---------------*/
+  
+  useEffect(()=>{
+    query.refetch();
+  }, [params]);
   
   /*----------------Set-delle-ricette-consigliate----------------*/
   
@@ -89,7 +125,7 @@ function App() {
     filter,
     setFilter: (filterName)=>{ dispatch(setFilter(filterName)) },
     isOpenSidebar,
-    setSidebar: ()=>{ dispatch(setSidebar()) }
+    setSidebar: ()=>{ dispatch(setSidebar()) },
   };
 
   /*---------------------Gestione-LOADING------------------------*/
