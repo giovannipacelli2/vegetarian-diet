@@ -20,9 +20,10 @@ const Sidebar = ({ filter, setFilter, setSidebar, isOpenSidebar }) => {
 
       const name = item;
       const value = filter[item].value;
+      const title = filter[item].title;
       
       const JSX = <div key={index} className="filter">
-        <label htmlFor={name}>{name}</label>
+        <label htmlFor={name}>{title}</label>
 
         <input 
           type="checkbox"

@@ -1,0 +1,83 @@
+.section-top {
+    --section-top-mb: 2em;
+
+    display: flex;
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    height: max-content;
+    margin-bottom: var(--section-top-mb);
+}
+
+.hero-recipe {
+    width: 40vw;
+    height: 25em;
+}
+
+.section-top>.title {
+    font-size: 2.5em;
+    margin: 1em 0;
+}
+
+.recipe-container {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.header-sections {
+    --container-ml: 4vw;
+}
+.header-sections>.title {
+    font-size: 2em;
+}
+
+.header-sections>.line {
+    height: 0.25em;
+    width: 20vw;
+    margin-top: 1em;
+    margin-left: var(--container-ml);
+    
+    border-radius: 3em;
+
+    background-color: var(--simple-red);
+}
+.container-list, .container-step {
+    margin: 1em auto;
+}
+
+.container-list {
+    font-size: 1.2em;
+
+    padding: 1em;
+    width: 80vw;
+
+    display: grid;
+    gap: 0.2em;
+    grid-template-columns: repeat( auto-fit, minmax(10em, 1fr ) );
+}
+
+.container-step {
+    width: 85vw;
+}
+
+.single-step>ul>li {
+    color: var(--simple-red);
+}
+
+.single-step .title {
+    font-size: 1.4em;
+}
+
+
+.single-step>.description {
+    font-size: 1.1em;
+    margin-top: 1.2em;
+}
+.single-step {
+    margin-bottom: 1.5em;
+}
+.single-step:last-child {
+    margin-bottom: 0;
+}

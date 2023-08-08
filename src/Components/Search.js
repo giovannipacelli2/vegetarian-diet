@@ -78,7 +78,7 @@ const Search = () => {
         <input 
             type='text'
             autoComplete='off'
-            placeholder='Cerca'
+            placeholder='Search'
             id='textSearch'
             name='textSearch'
             onChange={(e)=>{handleChange(e.target.value)}}

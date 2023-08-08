@@ -8,21 +8,25 @@ const initialState = {
     searched: '',
     filter: {
         lowCarb: {
+            title: 'low carbs',
             query: 'maxCarbs',
             queryValue: 30,
             value:false
         },
         lowFat: {
+            title: 'low fat',
             query: 'maxFat',
             queryValue: 10,
             value:false
         },
         dairyFree: {
+            title: 'Lactose free',
             query: 'intolerances',
             queryValue: 'Dairy',
             value:false
         },
         glutenFree: {
+            title: 'Gluten free',
             query: 'intolerances',
             queryValue: 'Gluten',
             value:false

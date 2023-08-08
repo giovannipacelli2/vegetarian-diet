@@ -25,7 +25,7 @@ const Home = () => {
 
       <Hero cssClass={'hero home-img'} img={homeImg} />
 
-      <HeaderSection classlist={'header-section header-100'} />
+      <HeaderSection title={'Top rated'} classlist={'header-section header-100'} />
 
       <section className='img-container'>
         {

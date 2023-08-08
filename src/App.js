@@ -22,8 +22,8 @@ import { useQuery } from '@tanstack/react-query';
 // API Library
 import { fetchData } from './api/apiFunctions';
 
-const URL = 'http://localhost:4000/results';
-/* const URL = 'https://api.spoonacular.com/recipes/complexSearch'; */
+/* const URL = 'http://localhost:4000/data'; */
+const URL = 'https://api.spoonacular.com/recipes/complexSearch';
 
 
 function App() {
@@ -35,11 +35,13 @@ function App() {
 
   // Local State
 
-  const [ params, setParams ] = useState({});
+  const [ params, setParams ] = useState({diet: "Vegetarian"});
 
   useEffect(()=>{
 
-    let tmp = {diet: 'Vegetarian'};
+    let tmp = {
+      diet: "Vegetarian",
+    };
 
     for ( let item in filter ) {
 
@@ -84,7 +86,8 @@ function App() {
   
   useEffect(()=>{
     if (query.isFetched) {
-      dispatch(setData(query.data?.data));
+      /* dispatch(setData(query.data?.data)); */
+      dispatch(setData(query.data?.data?.results));
     }
   }, [query.isFetched]);
 

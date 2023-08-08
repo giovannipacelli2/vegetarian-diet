@@ -11,7 +11,7 @@ const ImgLink = ({title, image, id}) => {
             <Link 
                 className='none-link' 
                 to={`/SingleRecipe/${id}`}
-            >Più info</Link>
+            >More</Link>
         </button>
     </div>
   )
