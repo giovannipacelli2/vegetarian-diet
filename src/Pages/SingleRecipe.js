@@ -29,7 +29,7 @@ const SingleRecipe = () => {
   }
 
   const query = useQuery({
-    queryKey: ['fetch-recipe'],
+    queryKey: ['fetch-recipe', id],
     queryFn: fetchRecipe
   });
 
@@ -78,7 +78,9 @@ const SingleRecipe = () => {
 
   useEffect(() => {
     if (query.isFetched) {
-      setRecipe( createRecipe(query.data?.data) );
+      let tmpData = createRecipe(query.data?.data);
+      console.log(tmpData);
+      setRecipe( tmpData );
     }
 
     return ()=>{
