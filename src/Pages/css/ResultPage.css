@@ -1,0 +1,25 @@
+.result-container {
+    margin: 0 auto;
+    padding: 2em 0;
+    width: 80vw;
+    height: max-content;
+
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: center;
+    
+}
+
+.single-result {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+}
+
+.single-result>.title {
+    margin: 1em auto;
+}

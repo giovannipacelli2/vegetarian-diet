@@ -22,13 +22,14 @@ import { useQuery } from '@tanstack/react-query';
 // API Library
 import { fetchData } from './api/apiFunctions';
 
-/* const URL = 'http://localhost:4000/data'; */
-const URL = 'https://api.spoonacular.com/recipes/complexSearch';
+const URL = 'http://localhost:4000/data';
+/* const URL = 'https://api.spoonacular.com/recipes/complexSearch'; */
 
 
 function App() {
 
   const stateData = useSelector( (state)=>state.appReducer.data );
+  const searchedData = useSelector( (state)=>state.appReducer.searchedData );
   const filter = useSelector( (state)=>state.appReducer.filter );
   const isOpenSidebar = useSelector( (state)=>state.appReducer.isOpenSidebar );
   const dispatch = useDispatch();
@@ -102,13 +103,19 @@ function App() {
   useEffect(() => {
     if (stateData) {
 
-      let maxLength = stateData.length;
+      let maxLength = stateData.length - 1;
 
       let rdmSet = new Set();
 
       if (maxLength) {
         while (rdmSet.size < 6) {
-          rdmSet.add(Math.round(Math.random() * maxLength));
+
+          let tmpRdm = Math.round(Math.random() * maxLength);
+
+          // Controlla se è presente l'immagine prima di proseguire
+          if (!stateData[tmpRdm]?.image) return 
+
+          rdmSet.add(tmpRdm);
         }
       }
 
@@ -155,7 +162,7 @@ function App() {
           <SingleRecipe />
         }/>
         <Route path='/result' element={
-          <ResultPage />
+          <ResultPage data={searchedData}/>
         }/>
       </Routes>
     </Router>

@@ -16,8 +16,8 @@ import HeaderSection from '../Components/HeaderSection';
 const SingleRecipe = () => {
   
   const { id } = useParams();
-  /* const URL = 'http://localhost:4000/664658'; */
-  const URL = `https://api.spoonacular.com/recipes/${id}/information`;
+  const URL = 'http://localhost:4000/664658';
+  /* const URL = `https://api.spoonacular.com/recipes/${id}/information`; */
   const params = {
     includeNutrition : false
   }
@@ -79,7 +79,7 @@ const SingleRecipe = () => {
   useEffect(() => {
     if (query.isFetched) {
       let tmpData = createRecipe(query.data?.data);
-      console.log(tmpData);
+
       setRecipe( tmpData );
     }
 

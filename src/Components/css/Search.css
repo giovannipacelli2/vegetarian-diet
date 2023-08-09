@@ -49,6 +49,7 @@
 
 .dropmenu {
     position: absolute;
+    z-index: 100;
     width: var(--input-width);
 }
 
