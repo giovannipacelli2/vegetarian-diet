@@ -15,7 +15,7 @@
     width: var(--input-width);
     height: auto;
     
-    padding: 1em var(--input-padding);
+    padding: 1em calc(var(--input-padding)*2) 1em var(--input-padding);
     
     border-radius: var(--radius);
     border: 1px solid var(--gray);

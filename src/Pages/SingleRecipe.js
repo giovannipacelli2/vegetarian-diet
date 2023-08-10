@@ -8,12 +8,25 @@ import { fetchData } from '../api/apiFunctions';
 
 import './css/SingleRecipe.css';
 
+// Use Redux
+import { useSelector, useDispatch } from 'react-redux';
+import { setSearched } from '../actions/appReducer';
+
 // Import Components
 import Hero from '../Components/Hero';
 import HeaderSection from '../Components/HeaderSection';
 
 
 const SingleRecipe = () => {
+
+  const [ recipe, setRecipe ] = useState({});
+
+
+  /*---------------------------REDUX-----------------------------*/
+
+  const dispatch = useDispatch();
+
+  /*--------------------Data-QUERY-REQUEST-----------------------*/
   
   const { id } = useParams();
   const URL = 'http://localhost:4000/664658';
@@ -22,7 +35,6 @@ const SingleRecipe = () => {
     includeNutrition : false
   }
 
-  const [ recipe, setRecipe ] = useState({});
 
   const fetchRecipe = () => {
     return fetchData(URL, params);
@@ -73,6 +85,12 @@ const SingleRecipe = () => {
       steps: steps(),
     }
   }
+
+  /*------------------Svuota-il-campo-ricerca--------------------*/
+
+  useEffect(() => {
+    dispatch(setSearched(''));
+  }, []);
 
   /*-------Copiamo-i-dati-processati-nello-state-locale----------*/
 

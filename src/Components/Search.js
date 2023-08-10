@@ -1,5 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import './css/Search.css';
 
@@ -11,70 +11,68 @@ import { setSearched, setSearchedData } from '../actions/appReducer';
 
 const Search = () => {
 
-    const inputDomElem = useRef(null);
+    const navigate = useNavigate();
+
     // Gestisce apertura e chiusura della droplist
-    const [ isDropmenuOpen, setIsDropmenuOpen ] = useState(false);
-    // Controlla le coordinate dell'input per la droplist
-    const [ inputCoords, setInputCoords ] = useState({});
+    const [ filteredData, setFilteredData ] = useState({});
 
-    /*--------------Funzioni-attivate-dagli-EVENT-LISTENER--------------*/
-
-    const dropmenuOpen = ()=> {
-        setIsDropmenuOpen(true);
-        document.addEventListener('click', dropmenuClose);
-    };
-
-    const dropmenuClose = (e)=> {
-
-        if ( e.target.closest('.droplist') || e.target.id === 'textSearch' ) return;
-
-        setIsDropmenuOpen(false);
-        document.removeEventListener('click', dropmenuClose);
-    };
-
-    /*--------------Refresh-input-COORDS-&-Gestione-LISTENER------------*/
-
-    useEffect( ()=>{
-        if(inputDomElem) {
-            setInputCoords({
-                top : inputDomElem.current.clientBottom + "px",
-                left : inputDomElem.current.clientLeft + "px"
-            })
-        }
-
-        inputDomElem.current.addEventListener('focus', dropmenuOpen);
-
-        return ()=>{
-            inputDomElem.current.removeEventListener('focus', dropmenuOpen);
-            document.removeEventListener('click', dropmenuClose);
-        }
-    }, [inputDomElem] );
     
     /*--------------------Preleva-dati-dallo-STATE----------------------*/
 
     const data = useSelector( (state)=> state.appReducer.data );
     const searched = useSelector( (state)=> state.appReducer.searched );
-    const searchedData = useSelector( (state)=> state.appReducer.searchedData );
 
     const dispatch = useDispatch();
 
     /*-----------------------LISTENERs-sul-FORM-------------------------*/
-
+   
     const handleChange = (value)=>{
         let text = value.toLowerCase();
         dispatch(setSearched(text));
 
         let tmpSearchedData = data.filter( item=> item.title.toLowerCase().includes(text) );
         
-        dispatch(setSearchedData(tmpSearchedData));
+        setFilteredData(tmpSearchedData);
+        /* dispatch(setSearchedData(tmpSearchedData)); */
     };
 
     const handleSubmit = (e)=>{
         e.preventDefault();
+        let input = e.target.textSearch;
+
+        dispatch(setSearchedData(filteredData));
+
+        dispatch(setSearched(''));
+
+        input.blur();
+
+        // Se c'è un solo elemento si viene reindirizzati 
+        // direttamente alla pagina SingleRecipe
+
+        if ( filteredData.length === 1 ) {
+            let id = filteredData[0].id;
+            navigate(`/SingleRecipe/${id}`);
+
+            return
+        }
+
+        navigate('/result');
+    };
+
+    const handleClick = (e)=> {
+
+        let target = e.target.closest('li');
+
+        if (!target) return;
+
+        handleChange(target.textContent)
     };
 
   return (
-    <form className='search' onSubmit={(e)=>{handleSubmit(e)}}>
+    <form 
+        className='search'
+        onSubmit={(e)=>{handleSubmit(e)}}
+    >
         <input 
             type='text'
             autoComplete='off'
@@ -83,27 +81,22 @@ const Search = () => {
             name='textSearch'
             onChange={(e)=>{handleChange(e.target.value)}}
             value={searched}
-            ref={inputDomElem}
         />
         
         {
-            (searched && isDropmenuOpen && searchedData.length !== 0) &&
+            (searched && filteredData.length !== 0) &&
             <div 
                 className='dropmenu'
-                style={ inputCoords }
             >
                 <ul className='droplist'>
                     {
-                        searchedData.map((item, index)=>{
-                            return <li key={index}>
-                                <Link 
-                                    className='none-link'
-                                    to={`/SingleRecipe/${item.id}`}
-                                    onClick={()=>{setIsDropmenuOpen(false)}}
-                                >
-                                    {item.title}
-                                </Link>
-                            </li>
+                        filteredData.map((item, index)=>{
+                            return (
+                                <li 
+                                    key={index}
+                                    onClick={handleClick}
+                                >{item.title}</li>
+                            );
                         })
                     }
                 </ul>
@@ -114,7 +107,7 @@ const Search = () => {
             type='submit'
             className='icon-btn icon-search'
         >
-            <Link to='/result' ><AiOutlineSearch className='icon' /></Link>
+            <AiOutlineSearch className='icon' />
         </button>
     </form>
         

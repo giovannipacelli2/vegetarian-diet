@@ -1,8 +1,6 @@
 import React from 'react';
 import './css/ResultPage.css';
 
-import { Link } from 'react-router-dom';
-
 // Import components
 import ImgLink from '../Components/ImgLink';
 
