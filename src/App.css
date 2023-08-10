@@ -28,6 +28,12 @@ body {
   color: var(--simple-red);
 }
 
+.center-message {
+  font-size: 1.5em;
+  padding: 2em 0;
+  margin: 0 auto;
+  text-align: center;
+}
 
 .header-section {
     font-family: 'Signika Negative', sans-serif;

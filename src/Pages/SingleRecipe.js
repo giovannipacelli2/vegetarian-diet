@@ -15,6 +15,8 @@ import { setSearched } from '../actions/appReducer';
 // Import Components
 import Hero from '../Components/Hero';
 import HeaderSection from '../Components/HeaderSection';
+import Loading from '../Components/Loading';
+import ErrorMessage from '../Components/ErrorMessage';
 
 
 const SingleRecipe = () => {
@@ -35,7 +37,6 @@ const SingleRecipe = () => {
     includeNutrition : false
   }
 
-
   const fetchRecipe = () => {
     return fetchData(URL, params);
   }
@@ -44,6 +45,8 @@ const SingleRecipe = () => {
     queryKey: ['fetch-recipe', id],
     queryFn: fetchRecipe
   });
+
+  const { isLoading, isFetched, isError, error } = query;
 
   /*-------Creazione-oggetto-partendo-dai-dati-ricevuti----------*/
 
@@ -95,16 +98,17 @@ const SingleRecipe = () => {
   /*-------Copiamo-i-dati-processati-nello-state-locale----------*/
 
   useEffect(() => {
-    if (query.isFetched) {
-      let tmpData = createRecipe(query.data?.data);
-
-      setRecipe( tmpData );
+    if (isFetched) {
+      if (!isError) {
+        let tmpData = createRecipe(query.data?.data);
+        setRecipe( tmpData );
+      }
     }
 
     return ()=>{
       setRecipe({});
     }
-  }, [query.isFetched]);
+  }, [isFetched]);
 
 
   /*----------------Composizione-JSX-dai-dati--------------------*/
@@ -159,12 +163,13 @@ const SingleRecipe = () => {
     );
   }
 
+  /*-----------------Gestione-LOADIND-e-ERROR--------------------*/
 
-  if ( query.isLoading ) {
-    return <h2 className='message'>...loading</h2>
+  if ( isLoading ) {
+    return <Loading />
   }
-  if ( query.isError ) {
-    return <h2 className='message'>An error has occurred</h2>
+  if ( isError ) {
+    return <ErrorMessage message={error.message} />
   }
   if ( JSON.stringify(recipe) === '{}' ) {
     return <h2 className='message'>Nothing to see</h2>

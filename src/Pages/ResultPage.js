@@ -8,7 +8,7 @@ const ResultPage = ({data}) => {
   
   if (data.length === 0) {
     return (
-      <h2 className='message'>Nothing to see</h2>
+      <h2 className='center-message'>Nothing to see</h2>
     )
   }
   return (

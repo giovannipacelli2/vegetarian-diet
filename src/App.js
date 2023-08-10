@@ -90,10 +90,17 @@ function App() {
   
   useEffect(()=>{
     if (query.isFetched) {
-      /* dispatch(setData(query.data?.data)); */
       dispatch(setData(query.data?.data?.results));
     }
   }, [query.isFetched]);
+
+  /*----------Setta-array-vuoto-nel-caso-di-assenza-dati---------*/
+
+  useEffect(()=>{
+    if (query.isError) {
+      dispatch(setData([]));
+    }
+  }, [query.isError]);
 
   /*-----------------Rifetch-dati-cambio-parametri---------------*/
   

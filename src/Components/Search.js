@@ -29,6 +29,9 @@ const Search = () => {
     const handleChange = (value)=>{
         let text = value.toLowerCase();
         dispatch(setSearched(text));
+    
+        // Evita la ricerca quando i dati non ci sono
+        if (!data) return;
 
         let tmpSearchedData = data.filter( item=> item.title.toLowerCase().includes(text) );
         
@@ -39,6 +42,9 @@ const Search = () => {
     const handleSubmit = (e)=>{
         e.preventDefault();
         let input = e.target.textSearch;
+
+        // Se il campo input è vuoto non invia il form
+        if (input.value === '') return;
 
         dispatch(setSearchedData(filteredData));
 
