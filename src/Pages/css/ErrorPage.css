@@ -10,7 +10,7 @@
     border-radius: var(--radius);
 }
 
-.message-container {
+.hero-error .message-container {
     /* background-color: var(--simple-blue); */
 
     display: flex;

@@ -24,6 +24,10 @@ body {
 
 /* Fonts */
 
+.clr-red {
+  color: var(--simple-red);
+}
+
 
 .header-section {
     font-family: 'Signika Negative', sans-serif;

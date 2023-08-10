@@ -1,15 +1,19 @@
 import React from 'react';
 import './css/ErrorMessage.css';
 
-const ErrorPage = ({message}) => {
+const ErrorMessage = ({message}) => {
 
   return (
-    <h2 className='message'>{message}</h2>
+    <div className="error-msg-container">
+      <h2 className='message'>Something gone wrong:</h2>
+      <h2 className='message clr-red'>{message}</h2>
+      
+    </div>
   )
 }
 
-ErrorPage.defaultProps = {
-  message : 'Something gone wrong'
+ErrorMessage.defaultProps = {
+  message : 'Unknown error'
 }
 
-export default ErrorPage
+export default ErrorMessage
