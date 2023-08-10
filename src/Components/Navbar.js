@@ -24,4 +24,8 @@ const Navbar = ({setSidebar}) => {
   )
 }
 
+Navbar.defaultProps = {
+  setSidebar : ()=>{}
+}
+
 export default Navbar

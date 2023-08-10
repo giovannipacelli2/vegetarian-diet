@@ -4,6 +4,9 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+//Use react-router-dom
+import { BrowserRouter as Router} from 'react-router-dom';
+
 //Use Redux
 import store from './store/store.js';
 import { Provider } from 'react-redux';
@@ -19,7 +22,9 @@ root.render(
     <QueryClientProvider client={queryClient} >
 
       <Provider store={store} >
-        <App />
+        <Router>
+          <App />
+        </Router>
       </Provider>
       
       <ReactQueryDevtools isInitialOpen={false} position='bottom-right' />

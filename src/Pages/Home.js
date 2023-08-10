@@ -6,18 +6,31 @@ import homeImg from '../img/page-img.jpg';
 // Use Redux
 import { useSelector, useDispatch } from 'react-redux';
 
+// Pages
+import ErrorMessage from '../Components/ErrorMessage';
+
 // Componenti
 import HeaderSection from '../Components/HeaderSection';
 import Hero from '../Components/Hero';
 import ImgLink from '../Components/ImgLink';
+import Loading from '../Components/Loading';
 
-const Home = () => {
+const Home = ({query}) => {
+  
+  const { isLoading, isError, error } = query;
 
   // Preleviamo dallo store
   const topRated = useSelector( (state)=>state.appReducer.topRated );
   const dispatch = useDispatch();
 
-  /*----------------Set-delle-ricette-consigliate----------------*/
+  /*---------------------Gestione-errori-------------------------*/
+
+  if ( isLoading ) {
+    return <Loading />
+  }
+  if ( isError ) {
+    return <ErrorMessage message={error.message} />
+  }
   
 
   return (
@@ -27,13 +40,14 @@ const Home = () => {
 
       <HeaderSection title={'Top rated'} classlist={'header-section header-100'} />
 
+
       <section className='img-container'>
         {
-          topRated.map( (item, index)=>{
-            return(
+          topRated.map((item, index) => {
+            return (
               <ImgLink key={index} {...item} />
             );
-          } )
+          })
         }
       </section>
 

@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 
 //Use react-router-dom
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 
 // Pages
 import Home from './Pages/Home';
 import SingleRecipe from './Pages/SingleRecipe';
 import ResultPage from './Pages/ResultPage';
+import ErrorPage from './Pages/ErrorPage';
 
 // Components
 import Navbar from './Components/Navbar';
@@ -27,6 +28,8 @@ const URL = 'http://localhost:4000/data';
 
 
 function App() {
+
+  const navigate = useNavigate();
 
   const stateData = useSelector( (state)=>state.appReducer.data );
   const searchedData = useSelector( (state)=>state.appReducer.searchedData );
@@ -138,34 +141,25 @@ function App() {
     setSidebar: ()=>{ dispatch(setSidebar()) },
   };
 
-  /*---------------------Gestione-LOADING------------------------*/
-
-  if (query.isLoading) return(
-      <h2>Loading...</h2>
-  );
-
-  /*------------------Gestione-eventuali-errori------------------*/
-
-  if (query.isError) return(
-      <h2>{`An error has occurred: ${query.error.message}`}</h2>
-  );
-
   return (
-    <Router>
+    <>
       <Navbar setSidebar={manageSidebar} />
       <Sidebar {...sidebarProps} />
       <Routes>
         <Route exact path='/' element={
-          <Home />
+          <Home query={query} />
         }/>
-        <Route path='/SingleRecipe/:id' element={
+        <Route exact path='/SingleRecipe/:id' element={
           <SingleRecipe />
         }/>
-        <Route path='/result' element={
+        <Route exact path='/result' element={
           <ResultPage data={searchedData}/>
         }/>
+        <Route path='*' element={
+          <ErrorPage />
+        }/>
       </Routes>
-    </Router>
+    </>
   );
 }
 

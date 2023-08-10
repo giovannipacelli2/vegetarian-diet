@@ -11,7 +11,7 @@ const initialState = {
             title: 'low carbs',
             query: 'maxCarbs',
             queryValue: 30,
-            value:true
+            value:false
         },
         lowFat: {
             title: 'low fat',
