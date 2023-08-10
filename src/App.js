@@ -75,7 +75,7 @@ function App() {
 }
 
   const query =  useQuery({
-      queryKey: ['fetch-repo'],
+      queryKey: ['fetch-repo', params],
       queryFn: ()=>{return fetchRepositories(params)}
   });
 

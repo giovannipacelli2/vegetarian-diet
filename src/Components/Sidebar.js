@@ -30,7 +30,7 @@ const Sidebar = ({ filter, setFilter, setSidebar, isOpenSidebar }) => {
           name={name} 
           id={name} 
           onChange={ handleChange }
-          value={value}
+          checked={value}
         />
       </div>
 
