@@ -1,6 +1,7 @@
 .img-link {
     position: relative;
     width: 20em;
+    z-index: -1;
 }
 
 .img-link>img {
@@ -10,7 +11,7 @@
 
 .img-link, 
 .img-link>img {
-    border-radius: 0.5rem;;
+    border-radius: 0.5rem;
 }
 
 .img-link .img-btn {

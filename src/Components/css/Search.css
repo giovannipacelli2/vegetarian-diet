@@ -59,7 +59,7 @@
 
     display: flex;
     justify-content: center;
-    z-index: 15;
+    z-index: 100;
 
     width: var(--dropmenu-width);
 }
