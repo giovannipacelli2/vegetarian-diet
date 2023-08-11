@@ -1,18 +1,22 @@
 .search {
     --radius: 2em;
     --input-padding: 1.5em;
-    --input-width: 20em;
+    --input-width: 85%;
 
-    width: auto;
+    width: var(--input-width);
     height: auto;
 
-    position: relative;
+    position: absolute;
+
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .search>input {
     font-size: 1em;
     
-    width: var(--input-width);
+    width: 100%;
     height: auto;
     
     padding: 1em calc(var(--input-padding)*2) 1em var(--input-padding);
@@ -48,14 +52,25 @@
 /*----------------Drop-menu----------------*/
 
 .dropmenu {
+    --dropmenu-width: 100%;
+    --dropmenu-heigth: 15em;
+
     position: absolute;
-    z-index: 10;
-    width: var(--input-width);
+
+    display: flex;
+    justify-content: center;
+    z-index: 15;
+
+    width: var(--dropmenu-width);
 }
 
 .droplist {
     margin: 0 auto;
-    width: calc( var(--input-width) - 10% );
+
+    width: calc( var(--dropmenu-width) - 10% );
+    max-height: var(--dropmenu-heigth);
+
+    overflow-y: scroll;
 
     list-style-type: none;
     border: 1px solid var(--primary-green-4);
@@ -74,4 +89,36 @@
 }
 .droplist>li:hover {
     background-color: var(--primary-green-2);
+}
+
+@media only screen and (min-width:476px) {
+    .search {
+        --input-width: 65%;
+    }
+    .dropmenu {
+        --dropmenu-heigth: 25em;
+    }
+}
+
+@media only screen and (min-width:768px) {
+    .search {
+        --input-width: 20em;
+
+        position: relative;
+        top: 0;
+        left: 0;
+        transform: translate(0, 0);
+    }
+    .dropmenu {
+        --dropmenu-width: 20em;
+    }
+}
+
+@media only screen and (min-width:992px) {
+    .search {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
 }
