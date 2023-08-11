@@ -92,7 +92,7 @@ function App() {
     if (query.isFetched) {
       dispatch(setData(query.data?.data?.results));
     }
-  }, [query.isFetched]);
+  }, [query.isFetched, query.data]);
 
   /*----------Setta-array-vuoto-nel-caso-di-assenza-dati---------*/
 
