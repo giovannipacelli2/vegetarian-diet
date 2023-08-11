@@ -8,6 +8,11 @@
     height: max-content;
 }
 
+.img-link, 
+.img-link>img {
+    border-radius: 0.5rem;;
+}
+
 .img-link .img-btn {
     position: absolute;
     top: 50%;

@@ -12,13 +12,15 @@
 }
 
 .hero-recipe {
-    width: 40vw;
-    height: 25em;
+    width: 90vw;
+    height: 12em;
 }
 
 .section-top>.title {
     font-size: 2.5em;
     margin: 1em 0;
+
+    text-align: center;
 }
 
 .recipe-container {
@@ -35,7 +37,7 @@
 
 .header-sections>.line {
     height: 0.25em;
-    width: 20vw;
+    width: 70vw;
     margin-top: 1em;
     margin-left: var(--container-ml);
     
@@ -59,7 +61,7 @@
 }
 
 .container-step {
-    width: 85vw;
+    width: 75vw;
 }
 
 .single-step>ul>li {
@@ -80,4 +82,47 @@
 }
 .single-step:last-child {
     margin-bottom: 0;
+}
+
+@media only screen and (min-width:330px) {
+    .hero-recipe {
+        width: 90vw;
+        height: 16em;
+    }
+}
+@media only screen and (min-width:400px) {
+    .hero-recipe {
+        width: 80vw;
+        height: 18em;
+    }
+
+    .header-sections>.line {
+        width: 40vw;
+    }
+}
+@media only screen and (min-width:576px) {
+    .hero-recipe {
+        width: 38em;
+        height: 25em;
+    }
+
+    .header-sections>.line {
+        width: 30vw;
+    }
+
+    .container-step {
+        width: 85vw;
+    }
+}
+@media only screen and (min-width:768px) {
+
+    .header-sections>.line {
+        width: 20vw;
+    }
+}
+@media only screen and (min-width:1200px) {
+
+    .header-sections>.line {
+        width: 16em;
+    }
 }
