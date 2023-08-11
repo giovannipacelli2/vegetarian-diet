@@ -1,6 +1,6 @@
 .sidebar {
 
-    --sidebar-width: 40vw;
+    --sidebar-width: 85vw;
 
     display: block;
 
@@ -9,7 +9,7 @@
     top: 0;
     right: 0;
 
-    width: 40vw;
+    width: var(--sidebar-width);
     max-width: 25em;
     height: 100%;
 
@@ -155,7 +155,7 @@
     position: absolute;
 
     top: 0;
-    left: 4em;
+    left: 2em;
     width: 0.25em;
     height: 15em;
 
@@ -178,4 +178,24 @@
     height: var(--checkbox-width);
 
     cursor: pointer;
+}
+
+@media only screen and (min-width:340px) {
+
+    .filter-container>.line {
+        left: 4em;
+    }
+}
+@media only screen and (min-width:530px) {
+
+    .sidebar {
+        --sidebar-width: 60vw;
+    }
+
+}
+@media only screen and (min-width:768px) {
+
+    .sidebar {
+        --sidebar-width: 40vw;
+    }
 }
