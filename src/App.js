@@ -28,9 +28,6 @@ const URL = 'http://localhost:4000/data';
 
 
 function App() {
-
-  const navigate = useNavigate();
-
   const stateData = useSelector( (state)=>state.appReducer.data );
   const searchedData = useSelector( (state)=>state.appReducer.searchedData );
   const filter = useSelector( (state)=>state.appReducer.filter );
@@ -40,6 +37,8 @@ function App() {
   // Local State
 
   const [ params, setParams ] = useState({diet: "Vegetarian"});
+
+  /*------Creazione-oggetto-da-passare-come-oggetto-'params'-----*/
 
   useEffect(()=>{
 

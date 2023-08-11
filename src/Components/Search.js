@@ -13,7 +13,9 @@ const Search = () => {
 
     const navigate = useNavigate();
 
-    // Gestisce apertura e chiusura della droplist
+    /*----------------------Stato-del-componente------------------------*/
+
+    const [ searchedText, setSearchedText ] = useState('');
     const [ filteredData, setFilteredData ] = useState({});
 
     
@@ -24,11 +26,23 @@ const Search = () => {
 
     const dispatch = useDispatch();
 
+    /*-------------AGGIORNA-LA-LISTA-QUANDO-I-DATI-CAMBIANO-------------*/
+
+    useEffect(()=>{
+        // Evita la ricerca quando i dati non ci sono
+        if (!data) return;
+
+        let tmpSearchedData = data.filter( item=> item.title.toLowerCase().includes(searched) );
+        setFilteredData(tmpSearchedData);
+        dispatch(setSearchedData(tmpSearchedData));
+    }, [data]);
+
     /*-----------------------LISTENERs-sul-FORM-------------------------*/
    
     const handleChange = (value)=>{
         let text = value.toLowerCase();
-        dispatch(setSearched(text));
+        /* dispatch(setSearched(text)); */
+        setSearchedText(text);
     
         // Evita la ricerca quando i dati non ci sono
         if (!data) return;
@@ -42,13 +56,15 @@ const Search = () => {
     const handleSubmit = (e)=>{
         e.preventDefault();
         let input = e.target.textSearch;
+        let text = input.value;
 
         // Se il campo input è vuoto non invia il form
-        if (input.value === '') return;
+        if (text === '') return;
 
         dispatch(setSearchedData(filteredData));
+        dispatch(setSearched(text));
 
-        dispatch(setSearched(''));
+        setSearchedText('');
 
         input.blur();
 
@@ -86,11 +102,11 @@ const Search = () => {
             id='textSearch'
             name='textSearch'
             onChange={(e)=>{handleChange(e.target.value)}}
-            value={searched}
+            value={searchedText}
         />
         
         {
-            (searched && filteredData.length !== 0) &&
+            (searchedText && filteredData.length !== 0) &&
             <div 
                 className='dropmenu'
             >
