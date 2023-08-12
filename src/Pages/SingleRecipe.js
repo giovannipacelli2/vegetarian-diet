@@ -9,7 +9,7 @@ import { fetchData } from '../api/apiFunctions';
 import './css/SingleRecipe.css';
 
 // Use Redux
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setSearched } from '../actions/appReducer';
 
 // Import Components
@@ -31,8 +31,8 @@ const SingleRecipe = () => {
   /*--------------------Data-QUERY-REQUEST-----------------------*/
   
   const { id } = useParams();
-  const URL = 'http://localhost:4000/664658';
-  /* const URL = `https://api.spoonacular.com/recipes/${id}/information`; */
+  /* const URL = 'http://localhost:4000/664658'; */
+  const URL = `https://api.spoonacular.com/recipes/${id}/information`;
   const params = {
     includeNutrition : false
   }

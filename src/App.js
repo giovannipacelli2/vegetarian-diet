@@ -23,8 +23,8 @@ import { useQuery } from '@tanstack/react-query';
 // API Library
 import { fetchData } from './api/apiFunctions';
 
-const URL = 'http://localhost:4000/data';
-/* const URL = 'https://api.spoonacular.com/recipes/complexSearch'; */
+/* const URL = 'http://localhost:4000/data'; */
+const URL = 'https://api.spoonacular.com/recipes/complexSearch';
 
 
 function App() {
