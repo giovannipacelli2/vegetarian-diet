@@ -31,8 +31,7 @@ const initialState = {
             queryValue: 'Gluten',
             value:false
         },
-    },
-    desktop: false
+    }
 }
 
 export const appReducer = createSlice({
@@ -53,9 +52,6 @@ export const appReducer = createSlice({
         },
         setSearchedData: (state, action)=>{
             state.searchedData = action.payload;
-        },
-        setDevice: (state, action)=>{
-            state.desktop = action.payload;
         },
         setTopRated: (state, action)=>{
             state.topRated = action.payload;

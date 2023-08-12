@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 
 //Use react-router-dom
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 // Pages
 import Home from './Pages/Home';
@@ -16,14 +16,16 @@ import Sidebar from './Components/Sidebar';
 
 // Use Redux
 import { useSelector, useDispatch } from 'react-redux';
-import { setData, setTopRated, setDevice, setSidebar, setFilter } from './actions/appReducer';
+import { setData, setTopRated, setSidebar, setFilter } from './actions/appReducer';
 
 import { useQuery } from '@tanstack/react-query';
 
 // API Library
 import { fetchData } from './api/apiFunctions';
 
+// Utile al debug
 /* const URL = 'http://localhost:4000/data'; */
+
 const URL = 'https://api.spoonacular.com/recipes/complexSearch';
 
 
@@ -45,13 +47,18 @@ function App() {
     let tmp = {
       diet: "Vegetarian",
     };
-
+    // Itera tutti i filtri
     for ( let item in filter ) {
 
       if (filter[item].value) {
 
+        // Query key da inviare come params
         let query = filter[item].query;
+        // Valore della query key da inviare come params
         let queryValue = filter[item].queryValue;
+
+        // Controlla se nell'oggetto che stiamo costruendo
+        // C'è già quel determinato parametro
 
         if ( tmp[query] ) {
           tmp[query] += `, ${queryValue}`;
@@ -101,7 +108,7 @@ function App() {
     }
   }, [query.isError]);
 
-  /*-----------------Rifetch-dati-cambio-parametri---------------*/
+  /*-----------------Refetch-dati-cambio-parametri---------------*/
   
   useEffect(()=>{
     query.refetch();

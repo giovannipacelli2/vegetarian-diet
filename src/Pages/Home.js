@@ -1,19 +1,17 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import './css/Home.css';
 import homeImg from '../img/page-img.jpg';
 
 // Use Redux
-import { useSelector, useDispatch } from 'react-redux';
-
-// Pages
-import ErrorMessage from '../Components/ErrorMessage';
+import { useSelector } from 'react-redux';
 
 // Componenti
 import HeaderSection from '../Components/HeaderSection';
 import Hero from '../Components/Hero';
 import ImgLink from '../Components/ImgLink';
 import Loading from '../Components/Loading';
+import ErrorMessage from '../Components/ErrorMessage';
 
 const Home = ({query}) => {
   
@@ -21,7 +19,6 @@ const Home = ({query}) => {
 
   // Preleviamo dallo store
   const topRated = useSelector( (state)=>state.appReducer.topRated );
-  const dispatch = useDispatch();
 
   /*---------------------Gestione-errori-------------------------*/
 
@@ -40,16 +37,18 @@ const Home = ({query}) => {
 
       <HeaderSection title={'Top rated'} classlist={'header-section header-100'} />
 
-
-      <section className='img-container'>
-        {
-          topRated.map((item, index) => {
-            return (
-              <ImgLink key={index} {...item} />
-            );
-          })
-        }
-      </section>
+      {
+        topRated.length === 0 ? <ErrorMessage message={'No data, try to refresh the page'}/> : 
+        <section className='img-container'>
+          {
+            topRated.map((item, index) => {
+              return (
+                <ImgLink key={index} {...item} />
+              );
+            })
+          }
+        </section>
+      }
 
     </section>
   )

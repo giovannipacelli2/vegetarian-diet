@@ -2,6 +2,8 @@ import React from 'react';
 import './css/ErrorPage.css';
 
 import ImgPage from '../img/page-img.jpg';
+
+// Import Components
 import Hero from '../Components/Hero';
 
 import { Link } from 'react-router-dom';

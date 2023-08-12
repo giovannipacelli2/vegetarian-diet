@@ -1,9 +1,11 @@
 import React from 'react'
+import './css/Navbar.css';
+
 import { Link } from 'react-router-dom';
 import { AiOutlineMenu } from 'react-icons/ai';
 
-import './css/Navbar.css';
 
+// Import Components
 import Search from './Search'
 
 const Navbar = ({setSidebar}) => {

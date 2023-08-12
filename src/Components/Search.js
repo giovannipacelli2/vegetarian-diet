@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-
 import './css/Search.css';
+
+import { useNavigate } from 'react-router-dom';
 
 import { AiOutlineSearch } from 'react-icons/ai';
 
@@ -37,11 +37,12 @@ const Search = () => {
         dispatch(setSearchedData(tmpSearchedData));
     }, [data]);
 
-    /*-----------------------LISTENERs-sul-FORM-------------------------*/
+    /*---------------------------LISTENERs------------------------------*/
    
     const handleChange = (value)=>{
         let text = value.toLowerCase();
-        /* dispatch(setSearched(text)); */
+
+        // Set local-state
         setSearchedText(text);
     
         // Evita la ricerca quando i dati non ci sono
@@ -49,8 +50,9 @@ const Search = () => {
 
         let tmpSearchedData = data.filter( item=> item.title.toLowerCase().includes(text) );
         
+        // Set local-state
         setFilteredData(tmpSearchedData);
-        /* dispatch(setSearchedData(tmpSearchedData)); */
+
     };
 
     const handleSubmit = (e)=>{
@@ -61,9 +63,11 @@ const Search = () => {
         // Se il campo input è vuoto non invia il form
         if (text === '') return;
 
+        // Set global State
         dispatch(setSearchedData(filteredData));
         dispatch(setSearched(text));
 
+        // Svuota lo state locale
         setSearchedText('');
 
         input.blur();

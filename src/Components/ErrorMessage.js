@@ -5,7 +5,7 @@ const ErrorMessage = ({message}) => {
 
   return (
     <div className="error-msg-container">
-      <h2 className='message'>Something gone wrong:</h2>
+      <h2 className='message'>Something went wrong:</h2>
       <h2 className='message clr-red'>{message}</h2>
       
     </div>

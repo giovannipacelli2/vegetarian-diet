@@ -16,6 +16,7 @@ const Sidebar = ({ filter, setFilter, setSidebar, isOpenSidebar }) => {
     let tmpArr = [];
     let index = 0;
 
+    // Itera filter e restituisce JSX
     for ( let item in filter ) {
 
       const name = item;
@@ -39,6 +40,7 @@ const Sidebar = ({ filter, setFilter, setSidebar, isOpenSidebar }) => {
       tmpArr.push(JSX);
     }
 
+    // Ritorna un array con pezzi di JSX
     return tmpArr;
 
   }

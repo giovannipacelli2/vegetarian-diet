@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
+import './css/SingleRecipe.css';
+
 import { useParams } from 'react-router-dom'
 
 import { useQuery } from '@tanstack/react-query';
 
 // API Library
 import { fetchData } from '../api/apiFunctions';
-
-import './css/SingleRecipe.css';
 
 // Use Redux
 import { useDispatch } from 'react-redux';
@@ -23,7 +23,6 @@ const SingleRecipe = () => {
 
   const [ recipe, setRecipe ] = useState({});
 
-
   /*---------------------------REDUX-----------------------------*/
 
   const dispatch = useDispatch();
@@ -31,7 +30,10 @@ const SingleRecipe = () => {
   /*--------------------Data-QUERY-REQUEST-----------------------*/
   
   const { id } = useParams();
+
+  // Utile al debug
   /* const URL = 'http://localhost:4000/664658'; */
+  
   const URL = `https://api.spoonacular.com/recipes/${id}/information`;
   const params = {
     includeNutrition : false
@@ -54,12 +56,12 @@ const SingleRecipe = () => {
 
     const ingredients = ()=>{
 
-      const baseUrl = 'https://spoonacular.com/cdn/ingredients_100x100/';
+      const imgBaseUrl = 'https://spoonacular.com/cdn/ingredients_100x100/';
 
       return data.extendedIngredients.map( (ingredient)=>{
         return {
           name: ingredient.name,
-          img: ingredient.image ? `${baseUrl}${ingredient.image}` : false
+          img: ingredient.image ? `${imgBaseUrl}${ingredient.image}` : false
         }
       } );
     };
@@ -85,7 +87,7 @@ const SingleRecipe = () => {
       lactoseFree : data.dairyFree,
       veryHealthy : data.veryHealthy,
       ingredients: ingredients(), // Array di ingredienti
-      steps: steps(),
+      steps: steps(), // Array con tutti gli step
     }
   }
 
@@ -163,14 +165,17 @@ const SingleRecipe = () => {
     );
   }
 
-  /*-----------------Gestione-LOADIND-e-ERROR--------------------*/
+  /*-----------------Gestione-LOADING-e-ERROR--------------------*/
 
   if ( isLoading ) {
     return <Loading />
   }
+
   if ( isError ) {
     return <ErrorMessage message={error.message} />
   }
+
+  //Controlla se lo state 'recipe' è vuoto
   if ( JSON.stringify(recipe) === '{}' ) {
     return <h2 className='message'>Nothing to see</h2>
   }else{
