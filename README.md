@@ -1,70 +1,95 @@
-# Getting Started with Create React App
+# Web app di ricette vegetariane
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## **Prerequisiti:** 
 
-## Available Scripts
+### - Per l'utilizzo:
 
-In the project directory, you can run:
+*  Avere un browser recente ( Chrome, Firefox, Safari...ecc ).
 
-### `npm start`
+### - Per lo sviluppo, richiede npm:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+* Installare tutte le dipendenze tramite `npm`
+Creare il proprio account su [_spoonacular_](https://spoonacular.com/food-api/docs) e modificare opportunamente il valore della variabile d'ambiente `ACCESS_TOKEN` presente nel file `src/api/apiFunctions.js`.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Comando di installazione:
 
-### `npm test`
+    - npm install
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* In fase di sviluppo può risultare comodo evitare di effettuare troppe richieste al server (visto il limite), quindi è stato predisposto un file `db.json` che è un facsimile del risultato di un fetch. Per poterne usufruire basta lanciare il json-server con il comando `npm`, e modificare opportunamente la variabile globale `URL` nel componente in analisi.
 
-### `npm run build`
+Comando di installazione:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    - npm run jsonServer
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+</br>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## **Linguaggi e framework utilizzati:** 
 
-### `npm run eject`
+* HTML, CSS, JavaScript, React, Redux.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## **Funzioni principali:** 
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+* Barra di ricerca, con la quale cercare le ricette
+* Menù contenente i filtri applicabili
+* Descrizione dettagliate ricette
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## **Visita la pagina:** 
 
-## Learn More
+* ### [_VegetarianWorld_](https://vegetarianworld.netlify.app/)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+</br>
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# **Organizzazione dei file:** 
 
-### Code Splitting
+ ## Cartella `./public`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+* Contiene `index.html` dove verrà iniettato l'entry point della web app, la `favicon.ico` e il file `_redirects` che reindirizza correttamente il browser in caso di refresch.
 
-### Analyzing the Bundle Size
+ ## Cartella `./src`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+* File `index.js` ovvero **l'entry** point dell'app, essa importa un file `index.css` dove sono presenti una serie di variabili globali e renderizza il componente `App`.
 
-### Making a Progressive Web App
+* `App.js` contiene l'intera struttura dell'app gestita opportunamente da **React-router**, esso importa il proprio file `App.css` che contiene variabili e classi generiche.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+ ## Sotto-cartelle di `./src`:
 
-### Advanced Configuration
+ ### Cartella `./src/api`:
+ * Contiene `apiFunctions.js` che contiene la funzione di **fetch**, accetta due parametri dei quali il primo è obbligatorio: `url` e `params`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+ ### Cartella `./src/img`:
+ * contiene le immagini
 
-### Deployment
+ ### Cartella `./src/store`:
+ * contiene lo store con i reducers
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+ ### Cartella `./src/actions`:
+ * contiene le azioni richiamate dal `dispatch` e la struttura dello **stato globale**
 
-### `npm run build` fails to minify
+ ### Cartella `./src/Pages`:
+ * contiene i componenti che renderizzano le varie pagine, è presente la sotto-cartella `./css` che contiene lo stile di ogni pagina
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+ ### Cartella `./src/Components`:
+ * contiene tutti i componenti, è presente la sotto-cartella `./css` che contiene lo stile di ogni componente.
+
+ </br>
+
+# **Gestione delle pagine:** 
+
+### File principale `App.js`:
+ * Si occupa di fare la richiesta principale al sito `spoonacolar` per prelevare l'array contenente le informazioni basilari (titolo e immagine), tale richiesta viene rieffettuata quando i filtri cambiano. Imposta la sezione `top rated` dai dati aggiornati.
+
+ * Renderizza tutte le pagine con React-Router, il componente `<Navbar/>` viene sempre renderizzato
+
+
+### `Home.js`:
+Renderizza la sezione `top rated` prelevando i dati dallo store Redux
+
+### `ResultPage.js`:
+Renderizza l'array di dati filtrato dal componente `<Search/>`, mostra titolo e immagine delle ricette.
+
+### `SingleRecipe.js`:
+Riceve l'`id` della ricetta cercata e in base a questa effettua una richiesta per ricevere dati specifici. Con l'aiuto di funzioni dedicate viene creato un oggetto da quei dati per consentirne la costruzione grafica.
+
+### `ErrorPage.js`:
+Viene mostrata quando React-router non trova corrispondenze tra i "path" preimpostati.
