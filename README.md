@@ -54,49 +54,49 @@ Comando di installazione:
 
  ## Sotto-cartelle di `./src`:
 
- ### Cartella `./src/api`:
+ ### Cartella **./src/api**:
  * Contiene `apiFunctions.js` che contiene la funzione di **fetch**, accetta due parametri dei quali il primo è obbligatorio: `url` e `params`.
 
- ### Cartella `./src/img`:
+ ### Cartella **./src/img**:
  * contiene le immagini
 
- ### Cartella `./src/store`:
+ ### Cartella **./src/store**:
  * contiene lo store con i reducers
 
- ### Cartella `./src/actions`:
+ ### Cartella **./src/actions**:
  * contiene le azioni richiamate dal `dispatch` e la struttura dello **stato globale**
 
- ### Cartella `./src/Pages`:
+ ### Cartella **./src/Pages**:
  * contiene i componenti che renderizzano le varie pagine, è presente la sotto-cartella `./css` che contiene lo stile di ogni pagina
 
- ### Cartella `./src/Components`:
+ ### Cartella **./src/Components**:
  * contiene tutti i componenti, è presente la sotto-cartella `./css` che contiene lo stile di ogni componente.
 
  </br>
 
 # **Gestione delle pagine:** 
 
-### File principale `App.js`:
+### File principale **App.js**:
  * Si occupa di fare la richiesta principale al sito `spoonacolar` per prelevare l'array contenente le informazioni basilari (titolo e immagine), tale richiesta viene rieffettuata quando i filtri cambiano. Imposta la sezione `top rated` dai dati aggiornati.
 
  * Renderizza tutte le pagine con React-Router, il componente `<Navbar/>` viene sempre renderizzato
 
 
-### `Home.js`:
+### **Home.js**:
 Renderizza la sezione `top rated` prelevando i dati dallo store Redux
 
-### `ResultPage.js`:
+### **ResultPage.js**:
 Renderizza l'array di dati filtrato dal componente `<Search/>`, mostra titolo e immagine delle ricette.
 
-### `SingleRecipe.js`:
+### **SingleRecipe.js**:
 Riceve l'`id` della ricetta cercata e in base a questa effettua una richiesta per ricevere dati specifici. Con l'aiuto di funzioni dedicate viene creato un oggetto da quei dati per consentirne la costruzione grafica.
 
-### `ErrorPage.js`:
+### **ErrorPage.js**:
 Viene mostrata quando React-router non trova corrispondenze tra i "path" preimpostati.
 
 # **Screenshot dell'app:**
 
-## Vista Mobile
+## **Vista Mobile**
 
 <img src = "./presentation/img/Mobile_screenshot_1.jpg" style = "width:100%">
 
@@ -110,7 +110,7 @@ Viene mostrata quando React-router non trova corrispondenze tra i "path" preimpo
 
 </br>
 
-## Vista Desktop
+## **Vista Desktop**
 
 <img src = "./presentation/img/Desktop_screenshot_1.jpg" style = "width:100%">
 
@@ -120,7 +120,7 @@ Viene mostrata quando React-router non trova corrispondenze tra i "path" preimpo
 
 </br>
 
-## Vista Errori
+## **Vista Errori**
 
 <img src = "./presentation/img/Desktop_screenshot_3.jpg" style = "width:100%">
 
