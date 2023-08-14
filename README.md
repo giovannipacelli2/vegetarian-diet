@@ -13,13 +13,13 @@ Creare il proprio account su [_spoonacular_](https://spoonacular.com/food-api/do
 
 Comando di installazione:
 
-    - npm install
+    npm install
 
 * In fase di sviluppo può risultare comodo evitare di effettuare troppe richieste al server (visto il limite), quindi è stato predisposto un file `db.json` che è un facsimile del risultato di un fetch. Per poterne usufruire basta lanciare il json-server con il comando `npm`, e modificare opportunamente la variabile globale `URL` nel componente in analisi.
 
 Comando di installazione:
 
-    - npm run jsonServer
+    npm run jsonServer
 
 </br>
 
@@ -93,3 +93,37 @@ Riceve l'`id` della ricetta cercata e in base a questa effettua una richiesta pe
 
 ### `ErrorPage.js`:
 Viene mostrata quando React-router non trova corrispondenze tra i "path" preimpostati.
+
+# **Screenshot dell'app:**
+
+## Vista Mobile
+
+<img src = "./presentation/img/Mobile_screenshot_1.jpg" style = "width:100%">
+
+</br>
+
+<img src = "./presentation/img/Mobile_screenshot_2.jpg" style = "width:100%">
+
+</br>
+
+<img src = "./presentation/img/Mobile_screenshot_3.jpg" style = "width:100%">
+
+</br>
+
+## Vista Desktop
+
+<img src = "./presentation/img/Desktop_screenshot_1.jpg" style = "width:100%">
+
+</br>
+
+<img src = "./presentation/img/Desktop_screenshot_2.jpg" style = "width:100%">
+
+</br>
+
+## Vista Errori
+
+<img src = "./presentation/img/Desktop_screenshot_3.jpg" style = "width:100%">
+
+</br>
+
+<img src = "./presentation/img/Desktop_screenshot_4.jpg" style = "width:100%">
