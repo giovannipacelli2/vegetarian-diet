@@ -15,6 +15,10 @@ Comando di installazione:
 
     npm install
 
+Comando di avvio:
+
+    npm run start
+
 * In fase di sviluppo può risultare comodo evitare di effettuare troppe richieste al server (visto il limite), quindi è stato predisposto un file `db.json` che è un facsimile del risultato di un fetch. Per poterne usufruire basta lanciare il json-server con il comando `npm`, e modificare opportunamente la variabile globale `URL` nel componente in analisi.
 
 Comando di installazione:
