@@ -127,3 +127,13 @@ Viene mostrata quando React-router non trova corrispondenze tra i "path" preimpo
 </br>
 
 <img src = "./presentation/img/Desktop_screenshot_4.jpg" style = "width:100%">
+
+</br>
+
+# **Link utili:**
+
+### - [Sito personale (portfolio)](https://giovannipacelli2.github.io/portfolio/)
+
+### - [Link al sito](https://vegetarianworld.netlify.app/)
+
+### - [Breve presentazione](./presentation/Presentazione_Vegetarian_World.pdf)
